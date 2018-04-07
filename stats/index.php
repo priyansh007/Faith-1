@@ -128,7 +128,7 @@
 				<?php
 		include("fusioncharts.php");
 		$loggedin=1;
-		$us="u15co000";
+		
 		$data=mysqli_connect("localhost","root","","mess") or die();
 		$db=mysqli_query($data,"SELECT `fname`,`lname` FROM login WHERE `colid`='$us'");
 		$db=mysqli_fetch_assoc($db);

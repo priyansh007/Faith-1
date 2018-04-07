@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.so>
+RewriteEngine On
+
+RewriteRule ^projectra/index\.php$ /projectra/?&%{QUERY_STRING}
+
+RewriteRule ^projectra/admin\.php$ /projectra/admin?&%{QUERY_STRING}
+
+RewriteRule ^projectra/bloger\.php$ /projectra/blogger?&%{QUERY_STRING}
+
+RewriteRule ^projectra/login/index\.php$ /projectra/login?&%{QUERY_STRING} [L]
+</IfModule>

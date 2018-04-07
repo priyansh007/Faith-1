@@ -63,6 +63,7 @@
       z-index: 900;
     }
     </style>
+    <script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
   </head>
   <body>
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
@@ -123,16 +124,56 @@
       </div>
       <main class="mdl-layout__content mdl-color--grey-100">
         <div class="mdl-grid demo-content">
-          <div class="mdl-layout__content">			  
+          <div class="mdl-layout__content" style="text-align: center;">			  
 				<?php
-					$i=1;
-					$o=['','breakfast','lunch','dinner'];
-					for($i=1;$i<4;$i++)
-					{
+		include("fusioncharts.php");
+		$loggedin=1;
+		$us="u15co000";
+		$data=mysqli_connect("localhost","root","","mess") or die();
+		$db=mysqli_query($data,"SELECT `fname`,`lname` FROM login WHERE `colid`='$us'");
+		$db=mysqli_fetch_assoc($db);
+		$fname=$db["fname"];
+		$lname=$db["lname"];
+		$user=$fname.' '.$lname;
+		$wk=(date('W')+1)%date('W', strtotime('December 28th'));
+		if($wk==0)
+		{
+			$wk=date('W', strtotime('December 28th'));
+		}
+		$i=1;
+					
+						
+							
+		
+
+
+
+        $arrData1 = array(
+            "chart" => array(
+              "caption" => "Top 7 most voted Lunch",
+              "paletteColors" => "#00acc1",
+              "bgColor" => "#ffffff",
+              "borderAlpha"=> "20",
+              "canvasBorderAlpha"=> "0",
+              "usePlotGradientColor"=> "0",
+              "plotBorderAlpha"=> "10",
+              "showXAxisLine"=> "1",
+              "xAxisLineColor" => "#999999",
+              "showValues" => "0",
+              "divlineColor" => "#999999",
+              "divLineIsDashed" => "1",
+              "showAlternateHGridColor" => "0"
+            )
+        );
+        $arrData1["data"] = array();
+       
+       
+
+				
 						$cn=0;
 						$data=mysqli_connect("localhost","root","","mess") or die();
-						$a=mysqli_query($data,"SELECT `menu`.`foodid`,`food`.`foodname`,sum(`count`) as `sum` FROM `menu`,`food` WHERE `week`='$wk' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`=$i GROUP BY `menu`.`foodid` ORDER BY `sum` DESC");
-						echo "<div class='demo-content mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop'><h4 style='text-align:left;'>&emsp;Top 7 $o[$i] items voted for next week's menu</h4><br><p style='margin:inherit;'>&emsp;";
+						$a=mysqli_query($data,"SELECT `menu`.`foodid`,`food`.`foodname`,sum(`count`) as `sum` FROM `menu`,`food` WHERE `week`='$wk' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`='2' GROUP BY `menu`.`foodid` ORDER BY `sum` DESC");
+						
 						if(mysqli_num_rows($a)!=0){
 						foreach($a as $ab)
 						{
@@ -141,18 +182,120 @@
 								break;
 							}
 							$cn++;
-							$fn=$ab['foodname'];
-							$cnt=$ab['sum'];
-							echo "<span>$fn <span style='background-color:#4db6ac;color:#fff;padding:8px'>$cnt</span></span>&emsp;";
+							array_push($arrData1["data"], array(
+           				    "label" => $ab["foodname"],
+         				   "value" => $ab["sum"]
+           					 )
+   						     );
 						}
-						}
-						else
+					}
+				
+			$jsonEncodedData = json_encode($arrData1);
+		      $columnChart = new FusionCharts("column2D", "myFirstChart" , 900, 300, "chart-1", "json", $jsonEncodedData);
+        // Render the chart
+        $columnChart->render();
+       
+
+
+		 $arrData = array(
+            "chart" => array(
+              "caption" => "Top 7 most voted Breakfast",
+              "paletteColors" => "#00acc1",
+              "bgColor" => "#ffffff",
+              "borderAlpha"=> "20",
+              "canvasBorderAlpha"=> "20",
+              "usePlotGradientColor"=> "0",
+              "plotBorderAlpha"=> "10",
+              "showXAxisLine"=> "1",
+              "xAxisLineColor" => "#999999",
+              "showValues" => "20",
+              "divlineColor" => "#999999",
+              "divLineIsDashed" => "1",
+              "showAlternateHGridColor" => "0"
+            )
+        );
+        $arrData["data"] = array();
+      
+       
+
+					
+						$cn=0;
+						$data=mysqli_connect("localhost","root","","mess") or die();
+						$a=mysqli_query($data,"SELECT `menu`.`foodid`,`food`.`foodname`,sum(`count`) as `sum` FROM `menu`,`food` WHERE `week`='$wk' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`='1' GROUP BY `menu`.`foodid` ORDER BY `sum` DESC");
+						
+						if(mysqli_num_rows($a)!=0){
+						foreach($a as $ab)
 						{
-							echo "No items voted yet!";
+							if($cn==8)
+							{
+								break;
+							}
+							$cn++;
+							array_push($arrData["data"], array(
+           				    "label" => $ab["foodname"],
+         				   "value" => $ab["sum"]
+           					 )
+   						     );
 						}
-						echo "</p></div><br>";
-					}							
-				?>
+					}
+				
+			$jsonEncodedData = json_encode($arrData);
+		      $columnChart = new FusionCharts("column2D", "myFirstChart2" , 900, 300, "chart-2", "json", $jsonEncodedData);
+        // Render the chart
+        $columnChart->render();
+
+
+        $arrData3 = array(
+            "chart" => array(
+              "caption" => "Top 7 most voted Dinner",
+              "paletteColors" => "#00acc1",
+              "bgColor" => "#ffffff",
+              "borderAlpha"=> "20",
+              "canvasBorderAlpha"=> "0",
+              "usePlotGradientColor"=> "0",
+              "plotBorderAlpha"=> "10",
+              "showXAxisLine"=> "1",
+              "xAxisLineColor" => "#999999",
+              "showValues" => "0",
+              "divlineColor" => "#999999",
+              "divLineIsDashed" => "1",
+              "showAlternateHGridColor" => "0"
+            )
+        );
+        $arrData3["data"] = array();
+       
+       
+
+				
+						$cn=0;
+						$data=mysqli_connect("localhost","root","","mess") or die();
+						$a=mysqli_query($data,"SELECT `menu`.`foodid`,`food`.`foodname`,sum(`count`) as `sum` FROM `menu`,`food` WHERE `week`='$wk' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`='3' GROUP BY `menu`.`foodid` ORDER BY `sum` DESC");
+						
+						if(mysqli_num_rows($a)!=0){
+						foreach($a as $ab)
+						{
+							if($cn==8)
+							{
+								break;
+							}
+							$cn++;
+							array_push($arrData3["data"], array(
+           				    "label" => $ab["foodname"],
+         				   "value" => $ab["sum"]
+           					 )
+   						     );
+						}
+					}
+				
+			$jsonEncodedData = json_encode($arrData3);
+		      $columnChart = new FusionCharts("column2D", "myFirstChart3" , 900, 300, "chart-3", "json", $jsonEncodedData);
+        // Render the chart
+        $columnChart->render();
+       
+		?>
+		<div id="chart-2">
+	</div ><br><div id=chart-1></div><br>
+	<div id="chart-3"></div>
             </div>
         </div>
       </main>

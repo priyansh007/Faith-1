@@ -23,7 +23,8 @@ $usid="u15co050";
 					$sb=$dk['subject'];
 					$au=$dk['author'];
 					echo "<tr>";
-					echo "<td>".$nm."</td><td>".$bn."</td><td>".$au."</td><td>".$sb."</td><td>".$tm."</td><td>".$fn."</td><br>";
+					echo "<td>".$nm."</td><td>".$bn."</td><td>".$au."</td><td>".$sb."</td><td>".$tm."</td><td>".$fn."</td><td><form method=post action=home.php><input type=submit name=renew value=renew id=rbtn></form></td><br>";
+
 					echo "</tr>";
 				}
 				

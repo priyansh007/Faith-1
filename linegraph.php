@@ -7,13 +7,13 @@ $dataPoints = array();
     // Replace your-hostname, your-db, your-username, your-password according to your database
    
 	$data=mysqli_connect("localhost","root","","mess") or die();
-    $a=mysqli_query($data,"SELECT `voteid` FROM vote WHERE `week`='15'");
+   
 	$i=0;
 	$ram=array("1000","2000");	
-    foreach($a as $ab){ 
+    while($i<2){ 
         array_push($dataPoints, array(
            				    "label" => $ram[$i],
-         				   "y" => $ab["voteid"]
+         				   "y" => $ram[$i]
            					 )
    						     );
         $i++;

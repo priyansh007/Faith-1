@@ -78,71 +78,7 @@
 
     <script src="../material.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script>
 	
-	
-	$(document).ready(function(){
-    $("a").hover(function(){
-        $(this).prevAll().andSelf().addClass('ratings_over');
-        $(this).nextAll().removeClass('ratings_vote'); 
-    });
-	
-	
-
-	/*$('#1').hover(
-            // Handles the mouseover
-            function() {
-                $(this).prevAll().andSelf().addClass('checked');
-                $(this).nextAll().removeClass('unchecked'); 
-            },
-            // Handles the mouseout
-            function() {
-                $(this).prevAll().andSelf().removeClass('unchecked');
-                set_votes($(this).parent());
-            }
-        );
-		$("#1w").on('click',function(){
-			
-			alert(1);
-
-		});
-		
-		function highlightStar(obj,id) {
-			removeHighlight(id);		
-			$('.demo-table #tutorial-'+id+' li').each(function(index) {
-				$(this).addClass('highlight');
-				if(index == $('.demo-table #tutorial-'+id+' li').index(obj)) {
-					return false;	
-				}
-			});
-		}
-
-		function removeHighlight(id) {
-			$('.demo-table #tutorial-'+id+' li').removeClass('selected');
-			$('.demo-table #tutorial-'+id+' li').removeClass('highlight');
-		}
-
-		function addRating(obj,id) {
-			$('.demo-table #tutorial-'+id+' li').each(function(index) {
-				$(this).addClass('selected');
-				$('#tutorial-'+id+' #rating').val((index+1));
-				if(index == $('.demo-table #tutorial-'+id+' li').index(obj)) {
-					return false;	
-				}
-			});
-		}
-
-		function resetRating(id) {
-			if($('#id')) {
-				$('span').each(function(index) {
-					$(this).addClass('selected');
-					if((index+1) == $('#id').val()) {
-						return false;	
-					}
-				});
-			}
-		} */
-	</script>
 
   </head>
   <body>
@@ -227,3 +163,68 @@
     
   </body>
 </html>
+<script>
+	
+	
+	$(document).ready(function(){
+    $("#2").hover(function(){
+        $(this).prevAll().andSelf().addClass('ratings_over');
+        $(this).nextAll().removeClass('ratings_vote'); 
+    });
+	
+	
+
+	/*$('#1').hover(
+            // Handles the mouseover
+            function() {
+                $(this).prevAll().andSelf().addClass('checked');
+                $(this).nextAll().removeClass('unchecked'); 
+            },
+            // Handles the mouseout
+            function() {
+                $(this).prevAll().andSelf().removeClass('unchecked');
+                set_votes($(this).parent());
+            }
+        );
+		$("#1w").on('click',function(){
+			
+			alert(1);
+
+		});
+		
+		function highlightStar(obj,id) {
+			removeHighlight(id);		
+			$('.demo-table #tutorial-'+id+' li').each(function(index) {
+				$(this).addClass('highlight');
+				if(index == $('.demo-table #tutorial-'+id+' li').index(obj)) {
+					return false;	
+				}
+			});
+		}
+
+		function removeHighlight(id) {
+			$('.demo-table #tutorial-'+id+' li').removeClass('selected');
+			$('.demo-table #tutorial-'+id+' li').removeClass('highlight');
+		}
+
+		function addRating(obj,id) {
+			$('.demo-table #tutorial-'+id+' li').each(function(index) {
+				$(this).addClass('selected');
+				$('#tutorial-'+id+' #rating').val((index+1));
+				if(index == $('.demo-table #tutorial-'+id+' li').index(obj)) {
+					return false;	
+				}
+			});
+		}
+
+		function resetRating(id) {
+			if($('#id')) {
+				$('span').each(function(index) {
+					$(this).addClass('selected');
+					if((index+1) == $('#id').val()) {
+						return false;	
+					}
+				});
+			}
+		} */
+	</script>

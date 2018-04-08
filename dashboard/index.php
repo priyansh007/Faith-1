@@ -183,12 +183,12 @@
 			  else
 				  echo"<h3 style='text-align:center;'>This Week's menu is not decided yet.(There maybe some error!)</h3>";
 			  echo"<br>
-			  <div>
-				<h4>Review Previous Menus</h4>";
+			  <div>";			
 					$cd=mysqli_query($data,"SELECT `week` FROM `menu` WHERE `approve`=1 AND `week`<>$wk GROUP BY `week`");
 					if(mysqli_num_rows($cd)!=0)
 					{						
-						echo "<form method='post' action=''>
+						echo "<h4>Review Previous Menus</h4>
+						<form method='post' action=''>
 								<div class='mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select'>
 									<input class='mdl-textfield__input' type='text' name='wtab' id='ntab' required='required' readonly tabIndex='-1'>
 									<label for='ntab'>

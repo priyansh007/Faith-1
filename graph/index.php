@@ -152,6 +152,7 @@ chart.render();
 				if($_SESSION['messman']==0)
 				{
 					echo "<a class='mdl-navigation__link' href='../vote-menu/'><i class='mdl-color-text--blue-grey-400 material-icons' role='presentation'>shopping_basket</i>Vote Menu</a>";
+          echo "<a class='mdl-navigation__link' href='../feedback/'><i class='mdl-color-text--blue-grey-400 material-icons' role='presentation'>feedback</i>Feedback</a>";
 				}
 				else
 				{

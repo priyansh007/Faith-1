@@ -71,7 +71,8 @@
     }
     .ratings_over {
     color:black;
-}
+	}
+	
 }
 </style>
     </style>
@@ -79,7 +80,96 @@
     <script src="../material.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
+<script>
+	
+	
+	$(document).ready(function(){
+	    $('a').on({
+	    	mouseenter: function(){
+	    	$(this).nextAll().removeClass('unchecked'); 
+	    	$(this).nextAll().css({"color": "white"});
+	    	$(this).removeClass('unchecked');
+	    	$(this).prevAll().addClass('checked');
+	       $(this).addClass('checked');
+	       $(this).prevAll().css({"color": "red"});
+	       $(this).css({"color": "red"});
+	    },
+	    mouseleave: function(){
+	    	$(this).nextAll().addClass('unchecked');
+	    	$(this).prevAll().addClass('unchecked');
+	    	$(this).addClass('unchecked');
+	    	$(this).prevAll().css({"color": "white"});
+	       $(this).css({"color": "white"});
+	       $(this).nextAll().css({"color": "white"});
+	    },
+	    click: function(){
 
+	    	$(this).nextAll().css({"color": "white"});
+	    	
+	    	
+	       $(this).prevAll().css({"color": "red"});
+	       $(this).css({"color": "red"});
+
+	       $(this).stop();
+	   }
+});
+	
+});	
+
+	/*$('#1').hover(
+            // Handles the mouseover
+            function() {
+                $(this).prevAll().andSelf().addClass('checked');
+                $(this).nextAll().removeClass('unchecked'); 
+            },
+            // Handles the mouseout
+            function() {
+                $(this).prevAll().andSelf().removeClass('unchecked');
+                set_votes($(this).parent());
+            }
+        );
+		$("#1w").on('click',function(){
+			
+			alert(1);
+
+		});
+		
+		function highlightStar(obj,id) {
+			removeHighlight(id);		
+			$('.demo-table #tutorial-'+id+' li').each(function(index) {
+				$(this).addClass('highlight');
+				if(index == $('.demo-table #tutorial-'+id+' li').index(obj)) {
+					return false;	
+				}
+			});
+		}
+
+		function removeHighlight(id) {
+			$('.demo-table #tutorial-'+id+' li').removeClass('selected');
+			$('.demo-table #tutorial-'+id+' li').removeClass('highlight');
+		}
+
+		function addRating(obj,id) {
+			$('.demo-table #tutorial-'+id+' li').each(function(index) {
+				$(this).addClass('selected');
+				$('#tutorial-'+id+' #rating').val((index+1));
+				if(index == $('.demo-table #tutorial-'+id+' li').index(obj)) {
+					return false;	
+				}
+			});
+		}
+
+		function resetRating(id) {
+			if($('#id')) {
+				$('span').each(function(index) {
+					$(this).addClass('selected');
+					if((index+1) == $('#id').val()) {
+						return false;	
+					}
+				});
+			}
+		} */
+	</script>
   </head>
   <body>
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header" >
@@ -145,13 +235,13 @@
               <div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">               			  
 				<ul>
 					<div id='1w'>
-						<input type="hidden" name="rating" id="rating" value="5"/>
+					<input type="hidden" name="rating" id="rating" value="5"/>
 						Rate: Raiders of the Lost Ark
-						<a id='1' class="fa fa-star unchecked"></a>
-						<a id='2' class="fa fa-star unchecked" ></a>
-						<a id='3' class="fa fa-star unchecked" ></a>
-						<a id='4' class="fa fa-star unchecked" ></a>
-						<a id='5' class="fa fa-star unchecked"></a>
+						<a id='1' class="fa fa-star unchecked" value="1"></a>
+						<a id='2' class="fa fa-star unchecked" value="2"></a>
+						<a id='3' class="fa fa-star unchecked" value="3"></a>
+						<a id='4' class="fa fa-star unchecked" value="4"></a>
+						<a id='5' class="fa fa-star unchecked" value="5"></a>
 					</div>
                	</ul>			
               </div>
@@ -163,68 +253,3 @@
     
   </body>
 </html>
-<script>
-	
-	
-	$(document).ready(function(){
-    $("#2").hover(function(){
-        $(this).prevAll().andSelf().addClass('ratings_over');
-        $(this).nextAll().removeClass('ratings_vote'); 
-    });
-	
-	
-
-	/*$('#1').hover(
-            // Handles the mouseover
-            function() {
-                $(this).prevAll().andSelf().addClass('checked');
-                $(this).nextAll().removeClass('unchecked'); 
-            },
-            // Handles the mouseout
-            function() {
-                $(this).prevAll().andSelf().removeClass('unchecked');
-                set_votes($(this).parent());
-            }
-        );
-		$("#1w").on('click',function(){
-			
-			alert(1);
-
-		});
-		
-		function highlightStar(obj,id) {
-			removeHighlight(id);		
-			$('.demo-table #tutorial-'+id+' li').each(function(index) {
-				$(this).addClass('highlight');
-				if(index == $('.demo-table #tutorial-'+id+' li').index(obj)) {
-					return false;	
-				}
-			});
-		}
-
-		function removeHighlight(id) {
-			$('.demo-table #tutorial-'+id+' li').removeClass('selected');
-			$('.demo-table #tutorial-'+id+' li').removeClass('highlight');
-		}
-
-		function addRating(obj,id) {
-			$('.demo-table #tutorial-'+id+' li').each(function(index) {
-				$(this).addClass('selected');
-				$('#tutorial-'+id+' #rating').val((index+1));
-				if(index == $('.demo-table #tutorial-'+id+' li').index(obj)) {
-					return false;	
-				}
-			});
-		}
-
-		function resetRating(id) {
-			if($('#id')) {
-				$('span').each(function(index) {
-					$(this).addClass('selected');
-					if((index+1) == $('#id').val()) {
-						return false;	
-					}
-				});
-			}
-		} */
-	</script>

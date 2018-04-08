@@ -16,7 +16,31 @@
 		$lname=$db["lname"];
 		$state=$db["state"];
 		$user=$fname.' '.$lname;
+
+    if(isset($_REQUEST['name'])){
+      $wk=(date('W')+1)%date('W', strtotime('December 28th'));
+    
+    if($wk==0)
+    {
+      $wk=date('W', strtotime('December 28th'));
+    }
+    $name="";
+    $flag=0;
+    $name=$_REQUEST['name'];
+    $name=$name/3.0;
+    $db=mysqli_query($data,"SELECT `usid`,`star`,`week` FROM review");
+    foreach ($db as $dk) {
+      if($dk['usid']==$us){
+         mysqli_query($data,"UPDATE review SET `star`='$name' WHERE `usid`='$us'");
+         $flag=1;
+      }
+    }
+    if($flag==0){
+    mysqli_query($data,"INSERT INTO review VALUES('$us','$name','$wk')");
+  }
+    echo "<script type='text/javascript'>alert('Successfully Recorded your record');</script>";
 	}
+}
     ?>
 <!doctype html>
 
@@ -206,12 +230,11 @@ border-radius: 4px;
 
     <script src="../material.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<?php
-  $o="";
-echo "<script>
+	
+<script>
 	
 	
-	
+	var ratingValue="";
 $(document).ready(function(){
   
   /* 1. Visualizing things on Hover - See next part for action on click */
@@ -249,22 +272,105 @@ $(document).ready(function(){
     }
     
     // JUST RESPONSE (Not needed)
-    var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
-    alert(ratingValue);
+    ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+    
     
     
   });
   
   
+
+
+
+
+  $('#stars1 li').on('mouseover', function(){
+    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+   
+    // Now highlight all the stars that's not after the current hovered star
+    $(this).parent().children('li.star').each(function(e){
+      if (e < onStar) {
+        $(this).addClass('hover');
+      }
+      else {
+        $(this).removeClass('hover');
+      }
+    });
+    
+  }).on('mouseout', function(){
+    $(this).parent().children('li.star').each(function(e){
+      $(this).removeClass('hover');
+    });
+  });
+  
+  
+  /* 2. Action to perform on click */
+  $('#stars1 li').on('click', function(){
+    var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+    var stars = $(this).parent().children('li.star');
+    
+    for (i = 0; i < stars.length; i++) {
+      $(stars[i]).removeClass('selected');
+    }
+    
+    for (i = 0; i < onStar; i++) {
+      $(stars[i]).addClass('selected');
+    }
+    
+    // JUST RESPONSE (Not needed)
+    ratingValue = ratingValue + parseInt($('#stars1 li.selected').last().data('value'), 10);
+   
+    
+  });
+
+
+  $('#stars2 li').on('mouseover', function(){
+    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+   
+    // Now highlight all the stars that's not after the current hovered star
+    $(this).parent().children('li.star').each(function(e){
+      if (e < onStar) {
+        $(this).addClass('hover');
+      }
+      else {
+        $(this).removeClass('hover');
+      }
+    });
+    
+  }).on('mouseout', function(){
+    $(this).parent().children('li.star').each(function(e){
+      $(this).removeClass('hover');
+    });
+  });
+  
+  
+  /* 2. Action to perform on click */
+  $('#stars2 li').on('click', function(){
+    var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+    var stars = $(this).parent().children('li.star');
+    
+    for (i = 0; i < stars.length; i++) {
+      $(stars[i]).removeClass('selected');
+    }
+    
+    for (i = 0; i < onStar; i++) {
+      $(stars[i]).addClass('selected');
+    }
+    
+    // JUST RESPONSE (Not needed)
+    ratingValue = ratingValue + parseInt($('#stars2 li.selected').last().data('value'), 10);
+   
+    window.location.href = "index.php?name=" + ratingValue; 
+    
+  });
+  
+
 });
 
 
 
 
 	
-	</script>"
-
-  ?>
+	</script>
   </head>
   <body>
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header" >
@@ -334,6 +440,7 @@ $(document).ready(function(){
 					
 
 					<div class='rating-stars text-center'>
+            Food-Quality :- 
    			 <ul id='stars'>
       		<li class='star' title='Poor' data-value='1'>
         <i class='fa fa-star fa-fw'></i>
@@ -358,7 +465,8 @@ $(document).ready(function(){
           
 
           <div class='rating-stars text-center'>
-         <ul id='stars'>
+            Behaviour of staff :-
+         <ul id='stars1'>
           <li class='star' title='Poor' data-value='1'>
         <i class='fa fa-star fa-fw'></i>
       </li>
@@ -378,7 +486,8 @@ $(document).ready(function(){
   </div>
 
   <div class='rating-stars text-center'>
-         <ul id='stars'>
+    Quantity of food :-
+         <ul id='stars2'>
           <li class='star' title='Poor' data-value='1'>
         <i class='fa fa-star fa-fw'></i>
       </li>

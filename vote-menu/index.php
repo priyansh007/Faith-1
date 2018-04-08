@@ -127,7 +127,7 @@
 					$wk=date('W', strtotime('December 28th'));
 				}
 				$data=mysqli_connect("localhost","root","","mess") or die();
-				$c=mysqli_query($data,"SELECT `voteid` FROM `voted` WHERE `week`='$wk' AND `colid`='$us'");
+				$c=mysqli_query($data,"SELECT `menuid` FROM `menu` WHERE `week`='$wk' AND `colid`='$us'");
 				if(mysqli_num_rows($c)!=0)
 				{
 					echo "<div class='mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop'>

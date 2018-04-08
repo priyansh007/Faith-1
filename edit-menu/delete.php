@@ -28,7 +28,9 @@
 				header("location:../edit-menu/");
 		}	
 		else
+
 		{	
+
 			$mid=$ab['menuid'];
 			$lol=mysqli_query($data,"UPDATE `menu` SET `deleted` = 1 WHERE `menuid`='$mid'");
 			if(!$lol)

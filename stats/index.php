@@ -173,8 +173,7 @@
 				
 						$cn=0;
 						$data=mysqli_connect("localhost","root","","mess") or die();
-						$a=mysqli_query($data,"CREATE OR REPLACE VIEW `hola` AS SELECT `menu`.`foodid`,`food`.`foodname`,`menuid` FROM `menu`,`food` WHERE `menuid` in (SELECT `menuid` FROM `voted` WHERE `week`='$wk' GROUP BY `menuid`) AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`=2 GROUP BY `menu`.`foodid`;");
-						$a=mysqli_query($data,"SELECT count(`voted`.`menuid`) as `sum`, `voted`.`menuid`, `foodid`,`foodname` from `hola`,`voted` WHERE `voted`.`menuid`=`hola`.`menuid` GROUP BY `voted`.`menuid` ORDER BY `sum` DESC;");
+						$a=mysqli_query($data,"SELECT count(`menu`.`menuid`)as`sum`,`menu`.`foodid`,`food`.`foodname` FROM `menu`,`food` WHERE `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`=2 AND `menu`.`week`='$wk' GROUP BY `menu`.`foodid` ORDER BY `sum` DESC;");
 						if(mysqli_num_rows($a)!=0){
 						foreach($a as $ab)
 						{
@@ -222,8 +221,12 @@
 					
 						$cn=0;
 						$data=mysqli_connect("localhost","root","","mess") or die();
-						$a=mysqli_query($data,"CREATE OR REPLACE VIEW `hola` AS SELECT `menu`.`foodid`,`food`.`foodname`,`menuid` FROM `menu`,`food` WHERE `menuid` in (SELECT `menuid` FROM `voted` WHERE `week`='$wk' GROUP BY `menuid`) AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`=1 GROUP BY `menu`.`foodid`;");
-						$a=mysqli_query($data,"SELECT count(`voted`.`menuid`) as `sum`, `voted`.`menuid`, `foodid`,`foodname` from `hola`,`voted` WHERE `voted`.`menuid`=`hola`.`menuid` GROUP BY `voted`.`menuid` ORDER BY `sum` DESC;");
+						
+						$a=mysqli_query($data,"SELECT count(`menu`.`menuid`)as`sum`,`menu`.`foodid`,`food`.`foodname` FROM `menu`,`food` WHERE `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`=1 AND `menu`.`week`='$wk' GROUP BY `menu`.`foodid` ORDER BY `sum` DESC;");
+
+						
+
+
 						if(mysqli_num_rows($a)!=0){
 						foreach($a as $ab)
 						{
@@ -270,8 +273,7 @@
 				
 						$cn=0;
 						$data=mysqli_connect("localhost","root","","mess") or die();
-						$a=mysqli_query($data,"CREATE OR REPLACE VIEW `hola` AS SELECT `menu`.`foodid`,`food`.`foodname`,`menuid` FROM `menu`,`food` WHERE `menuid` in (SELECT `menuid` FROM `voted` WHERE `week`='$wk' GROUP BY `menuid`) AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`=3 GROUP BY `menu`.`foodid`;");
-						$a=mysqli_query($data,"SELECT count(`voted`.`menuid`) as `sum`, `voted`.`menuid`, `foodid`,`foodname` from `hola`,`voted` WHERE `voted`.`menuid`=`hola`.`menuid` GROUP BY `voted`.`menuid` ORDER BY `sum` DESC;");
+						$a=mysqli_query($data,"SELECT count(`menu`.`menuid`)as`sum`,`menu`.`foodid`,`food`.`foodname` FROM `menu`,`food` WHERE `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`=3 AND `menu`.`week`='$wk' GROUP BY `menu`.`foodid` ORDER BY `sum` DESC;");
 						if(mysqli_num_rows($a)!=0){
 						foreach($a as $ab)
 						{

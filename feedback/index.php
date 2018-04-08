@@ -94,14 +94,7 @@
 	       $(this).prevAll().css({"color": "red"});
 	       $(this).css({"color": "red"});
 	    },
-	    mouseleave: function(){
-	    	$(this).nextAll().addClass('unchecked');
-	    	$(this).prevAll().addClass('unchecked');
-	    	$(this).addClass('unchecked');
-	    	$(this).prevAll().css({"color": "white"});
-	       $(this).css({"color": "white"});
-	       $(this).nextAll().css({"color": "white"});
-	    },
+	   
 	    click: function(){
 
 	    	$(this).nextAll().css({"color": "white"});
@@ -109,66 +102,15 @@
 	    	
 	       $(this).prevAll().css({"color": "red"});
 	       $(this).css({"color": "red"});
+	       alert($(this).val());
 
-	       $(this).stop();
 	   }
 });
+
 	
 });	
 
-	/*$('#1').hover(
-            // Handles the mouseover
-            function() {
-                $(this).prevAll().andSelf().addClass('checked');
-                $(this).nextAll().removeClass('unchecked'); 
-            },
-            // Handles the mouseout
-            function() {
-                $(this).prevAll().andSelf().removeClass('unchecked');
-                set_votes($(this).parent());
-            }
-        );
-		$("#1w").on('click',function(){
-			
-			alert(1);
-
-		});
-		
-		function highlightStar(obj,id) {
-			removeHighlight(id);		
-			$('.demo-table #tutorial-'+id+' li').each(function(index) {
-				$(this).addClass('highlight');
-				if(index == $('.demo-table #tutorial-'+id+' li').index(obj)) {
-					return false;	
-				}
-			});
-		}
-
-		function removeHighlight(id) {
-			$('.demo-table #tutorial-'+id+' li').removeClass('selected');
-			$('.demo-table #tutorial-'+id+' li').removeClass('highlight');
-		}
-
-		function addRating(obj,id) {
-			$('.demo-table #tutorial-'+id+' li').each(function(index) {
-				$(this).addClass('selected');
-				$('#tutorial-'+id+' #rating').val((index+1));
-				if(index == $('.demo-table #tutorial-'+id+' li').index(obj)) {
-					return false;	
-				}
-			});
-		}
-
-		function resetRating(id) {
-			if($('#id')) {
-				$('span').each(function(index) {
-					$(this).addClass('selected');
-					if((index+1) == $('#id').val()) {
-						return false;	
-					}
-				});
-			}
-		} */
+	
 	</script>
   </head>
   <body>

@@ -126,7 +126,7 @@
 				{
 					$wk=date('W', strtotime('December 28th'));
 				}
-				$bc=mysqli_query($data,"SELECT count(`voteid`) as `tcount` FROM `vote` WHERE `week`='$wk'");
+				$bc=mysqli_query($data,"SELECT count(distinct `colid`) as `tcount` FROM `menu` WHERE `week`='$wk'");
 				$bc=mysqli_fetch_assoc($bc);
 				$voted=$bc['tcount'];
 				$cd=mysqli_query($data,"SELECT count(`colid`) as `count` FROM login WHERE `messman`=0");
@@ -166,7 +166,7 @@
 							$sid=$i+$sum;
 							$name=$dayid.' '.$i;
 							$wka=$wk-1;
-							$a=mysqli_query($data,"SELECT `menu`.`foodid`,`food`.`foodname` FROM `menu`,`food` WHERE  `week`='$wk' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`=$i AND `menu`.`day`=$dayid ORDER BY `count` DESC");
+							$a=mysqli_query($data,"SELECT `menu`.`foodid`,count(`menu`.`foodid`) as `count`,`food`.`foodname` FROM `menu`,`food` WHERE  `week`='$wk' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`=$i AND `menu`.`day`=$dayid GROUP BY `foodid` ORDER BY `count` DESC");
 							echo "
 							<div class='mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height'>
 							<input class='mdl-textfield__input' type='text' name='fday[$dayid][$i]' id='$sid' required='required' readonly tabIndex='-1'>

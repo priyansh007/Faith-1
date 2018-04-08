@@ -21,7 +21,7 @@
 				$db=mysqli_query($data,"SELECT `foodid` FROM `food` WHERE `foodname`='$fnm'");
 				$db=mysqli_fetch_assoc($db);
 				$fid=$db['foodid'];							
-				$ab=mysqli_query($data,"UPDATE `menu` SET `approve` = 1 WHERE `foodid`='$fid' AND `day`=$i");
+				$ab=mysqli_query($data,"UPDATE `menu` SET `approve` = 1 WHERE `foodid`='$fid' AND `day`=$i AND `week`='$wk'");
 				if(!$ab)
 				{
 					$al=mysqli_error($data);	

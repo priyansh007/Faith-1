@@ -128,7 +128,7 @@
                 <h2 class="mdl-card__title-text">This Week's Menu</h2>
               </div>			  </div>
 				<?php
-					$data=mysqli_connect("localhost","root","","mess") or die();
+					$data=mysqli_connect("localhost","root","","mess") or die();					
 					$dd=mysqli_query($data,"SELECT `week` FROM `menu` WHERE `approve`=1 AND `week`=$wk GROUP BY `week`");
 					if(mysqli_num_rows($dd)!=0){
               echo"<table class='mdl-data-table mdl-js-data-table mdl-shadow--2dp' style=' width: 100%;'>
@@ -149,7 +149,7 @@
 					<tr>
 						<td class='mdl-data-table__cell--non-numeric'><b>Breakfast</b></td>";
 							$data=mysqli_connect("localhost","root","","mess") or die();
-							$a=mysqli_query($data,"SELECT `food`.`foodname` FROM `menu`,`food` WHERE `approve`=1 AND `week`='$wk' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`=1");
+							$a=mysqli_query($data,"SELECT distinct `food`.`foodname`,`day` FROM `menu`,`food` WHERE `approve`='1' AND `week`='$wk' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`='1' ORDER BY `day`");
 							foreach($a as $ab)
 							{
 								$fn=$ab['foodname'];
@@ -160,7 +160,7 @@
 					<tr>
 						<td class='mdl-data-table__cell--non-numeric'><b>Lunch</b></td>";
 						
-							$a=mysqli_query($data,"SELECT `food`.`foodname` FROM `menu`,`food` WHERE `approve`=1 AND `week`='$wk' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`=2");
+							$a=mysqli_query($data,"SELECT distinct `food`.`foodname`,`day` FROM `menu`,`food` WHERE `approve`='1' AND `week`='$wk' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`='2' ORDER BY `day`");
 							foreach($a as $ab)
 							{
 								$fn=$ab['foodname'];
@@ -170,7 +170,7 @@
     
 					<tr>
 						<td class='mdl-data-table__cell--non-numeric'><b>Dinner</b></td>";						
-							$a=mysqli_query($data,"SELECT `food`.`foodname` FROM `menu`,`food` WHERE `approve`=1 AND `week`='$wk' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`=3");
+							$a=mysqli_query($data,"SELECT distinct `food`.`foodname`,`day` FROM `menu`,`food` WHERE `approve`='1' AND `week`='$wk' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`='3' ORDER BY `day`");
 							foreach($a as $ab)
 							{
 								$fn=$ab['foodname'];
@@ -225,9 +225,9 @@
 					<tr>
 						<td class='mdl-data-table__cell--non-numeric'><b>Breakfast</b></td>";
 							$data=mysqli_connect("localhost","root","","mess") or die();
-							$a=mysqli_query($data,"SELECT `food`.`foodname` FROM `menu`,`food` WHERE `approve`=1 AND `week`='$k' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`=1");
+							$a=mysqli_query($data,"SELECT distinct `food`.`foodname`,`day` FROM `menu`,`food` WHERE `approve`='1' AND `week`='$k' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`='1' ORDER BY `day`");
 							foreach($a as $ab)
-							{
+							{									
 								$fn=$ab['foodname'];
 								echo "<td class='mdl-data-table__cell--non-numeric'>$fn</td>";
 							}
@@ -236,7 +236,7 @@
 					<tr>
 						<td class='mdl-data-table__cell--non-numeric'><b>Lunch</b></td>";
 						
-							$a=mysqli_query($data,"SELECT `food`.`foodname` FROM `menu`,`food` WHERE `approve`=1 AND `week`='$k' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`=2");
+							$a=mysqli_query($data,"SELECT distinct `food`.`foodname`,`day` FROM `menu`,`food` WHERE `approve`='1' AND `week`='$k' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`='2' ORDER BY `day`");
 							foreach($a as $ab)
 							{
 								$fn=$ab['foodname'];
@@ -246,7 +246,7 @@
     
 					<tr>
 						<td class='mdl-data-table__cell--non-numeric'><b>Dinner</b></td>";						
-							$a=mysqli_query($data,"SELECT `food`.`foodname` FROM `menu`,`food` WHERE `approve`=1 AND `week`='$k' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`=3");
+							$a=mysqli_query($data,"SELECT distinct `food`.`foodname`,`day` FROM `menu`,`food` WHERE `approve`='1' AND `week`='$k' AND `menu`.`foodid`=`food`.`foodid` AND `food`.`foodtype`='3' ORDER BY `day`");
 							foreach($a as $ab)
 							{
 								$fn=$ab['foodname'];

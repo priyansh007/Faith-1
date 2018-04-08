@@ -13,7 +13,7 @@
 			$s=mysqli_query($data,"SELECT `foodid` from `food` WHERE `foodname`='$bf'");
 			if(mysqli_num_rows($s)==0)
 				$db=mysqli_query($data,"INSERT INTO food(foodname,foodtype) VALUES('$bf','1')");
-			}
+		}
 		elseif(isset($_POST["addlunch"]))
 		{
 			$lunch=$_POST["lunch"];

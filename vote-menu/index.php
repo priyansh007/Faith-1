@@ -114,6 +114,7 @@
 				}
 			}
 		  ?>
+		  <a class="mdl-navigation__link" href="../suggestion/"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">playlist_add</i>Suggestion</a>
 		  <div class="mdl-layout-spacer"></div>
 		  <a class="mdl-navigation__link" href="../contact-us/"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Contact Us</a>
         </nav>
@@ -127,7 +128,7 @@
 					$wk=date('W', strtotime('December 28th'));
 				}
 				$data=mysqli_connect("localhost","root","","mess") or die();
-				$c=mysqli_query($data,"SELECT `voteid` FROM `vote` WHERE `week`='$wk' AND `colid`='$us'");
+				$c=mysqli_query($data,"SELECT `voteid` FROM `voted` WHERE `week`='$wk' AND `colid`='$us'");
 				if(mysqli_num_rows($c)!=0)
 				{
 					echo "<div class='mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop'>

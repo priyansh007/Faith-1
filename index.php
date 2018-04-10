@@ -1,3 +1,3 @@
 <?php
-  header("location:../teamfaith+1/dashboard/");
+  header("location:../Faith-1/dashboard/");
 ?>

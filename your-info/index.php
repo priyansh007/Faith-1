@@ -30,24 +30,24 @@
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+    <link rel="icon" sizes="192x192" href="../images/android-desktop.png">
 
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Material Design Lite">
-    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+    <link rel="apple-touch-icon-precomposed" href="../images/ios-desktop.png">
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
     <meta name="msapplication-TileColor" content="#3372DF">
 
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="../images/favicon.png">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="material.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../material.min.css">
+    <link rel="stylesheet" href="../styles.css">
     <style>
     #view-source {
       position: fixed;
@@ -127,7 +127,6 @@
 				<?php
 					$data=mysqli_connect("localhost","root","","mess") or die();
 					$bc=mysqli_query($data,"SELECT count(`voteid`) as `tcount` FROM `vote` WHERE `colid`='$us'");
-					$bc=mysqli_fetch_assoc($bc);
 					$voted=$bc['tcount'];
 					echo "<li><h4>$user</h4></li>";	
 					if($_SESSION['messman']==0)

@@ -46,8 +46,8 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="material.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../material.min.css">
+    <link rel="stylesheet" href="../styles.css">
     <style>
     #view-source {
       position: fixed;
@@ -91,8 +91,7 @@
 				else 
 				{
 					echo "<a style='text-decoration: none;' href='../login/'><li type='submit' class='mdl-menu__item'><i class='material-icons'>move_to_inbox</i>&ensp;Login</li></a>";
-				}
-        echo "<a class='mdl-navigation__link' href='../graph/'><i class='mdl-color-text--blue-grey-400 material-icons' role='presentation'>gesture</i>Review Graph</a>";
+				}        
 			?>
             </ul>
           </div>
@@ -105,7 +104,7 @@
 				if($_SESSION['messman']==0)
 				{
 					echo "<a class='mdl-navigation__link' href='../vote-menu/'><i class='mdl-color-text--blue-grey-400 material-icons' role='presentation'>shopping_basket</i>Vote Menu</a>";
-          echo "<a class='mdl-navigation__link' href='../feedback/'><i class='mdl-color-text--blue-grey-400 material-icons' role='presentation'>feedback</i>Feedback</a>";
+					echo "<a class='mdl-navigation__link' href='../feedback/'><i class='mdl-color-text--blue-grey-400 material-icons' role='presentation'>feedback</i>Feedback</a>";
 				}
 				else
 				{
@@ -114,6 +113,7 @@
 					<a class='mdl-navigation__link' href='../approve-menu/'><i class='mdl-color-text--blue-grey-400 material-icons' role='presentation'>check_circle</i>Approve Menu</a>";
 				}
 				echo "<a class='mdl-navigation__link' href='../suggestion/'><i class='mdl-color-text--blue-grey-400 material-icons' role='presentation'>playlist_add</i>Suggestion</a>";
+				echo "<a class='mdl-navigation__link' href='../graph/'><i class='mdl-color-text--blue-grey-400 material-icons' role='presentation'>gesture</i>Review Graph</a>";
 			}		  
 		  ?>			  
 		  <div class="mdl-layout-spacer"></div>

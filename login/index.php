@@ -4,6 +4,7 @@
     {		
 		header("location:../dashboard");
     }
+		
 	if (isset($_SESSION['result']))
 		$result=$_SESSION['result'];
 	else

@@ -1,3 +1,3 @@
 <?php
-  header("location:../messfood/dashboard/");
+  header("location:../Faith-1/dashboard/");
 ?>
